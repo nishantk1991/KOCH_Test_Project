@@ -40,7 +40,7 @@ public class KOCH_Page extends TestBase{
 	//@FindBy(xpath="//td[contains(@class,'selected')]")
 	@FindBy(xpath="//div[contains(@class,'dep')]//td[contains(@data-date,'22112020')]")
 	WebElement From_Date;
-	@FindBy(xpath="//div[contains(@class,'ret')]//td[contains(@data-date,'22122020')]")
+	@FindBy(xpath="//div[contains(@class,'ret')]//td[contains(@data-date,'30122020')]")
 	WebElement To_Date;
 	@FindBy(xpath="//div[contains(text(),'Travellers | Class')]/following-sibling::input")
 	WebElement Passenger_Link;
@@ -179,7 +179,7 @@ public class KOCH_Page extends TestBase{
 		wait.until(ExpectedConditions.visibilityOf(One_Stop_Text));
 		One_Stop_Checkbox.click();
 		wait.until(ExpectedConditions.visibilityOf(OnePlus_Stop_Text));
-		OnePlus_Stop_Checkbox.click();
+		//OnePlus_Stop_Checkbox.click();
 		
 		wait.until(ExpectedConditions.visibilityOf(Departure1_Text));
 		//Departure1_00_00_06_00.click();
@@ -213,7 +213,7 @@ public class KOCH_Page extends TestBase{
 		//wait.until(ExpectedConditions.visibilityOf(AirAsia_india_Text));
 		IndiGo_Checkbox.click();
 		//wait.until(ExpectedConditions.visibilityOf(IndiGo_Text));
-		//SpiceJet_Checkbox.click();
+		SpiceJet_Checkbox.click();
 		//wait.until(ExpectedConditions.visibilityOf(SpiceJet_Text));
 		//Vistara_Checkbox.click();
 		//wait.until(ExpectedConditions.visibilityOf(Vistara_Text));
@@ -230,8 +230,12 @@ public class KOCH_Page extends TestBase{
 			if(price<5000) {
 				String flight=driver.findElement(By.xpath("(//div[@class='result-col outr']//div[@class='price']//span/following-sibling::span)["+i+"]/ancestor::div[@class='summary-section']//div[@class='u-text-ellipsis']")).getText();
 				String[] Details=flight.split("  ");
-				System.out.println("Flight name is "+Details[0]);
-				System.out.println("Flight number is "+Details[1]);
+				System.out.println("\nFlight Name is "+Details[0]);
+				System.out.println("Flight Number is "+Details[1]);
+				String Departure_time=driver.findElement(By.xpath("(//div[@class='result-col']//div[@class='price']//span/following-sibling::span)["+i+"]/ancestor::div[@class='summary-section']//div[@class='time-group']/div[@class='time'][1]")).getText();
+				String Arrival_time=driver.findElement(By.xpath("(//div[@class='result-col']//div[@class='price']//span/following-sibling::span)["+i+"]/ancestor::div[@class='summary-section']//div[@class='time-group']/div[@class='time'][2]")).getText();
+				System.out.println("Flight Departure_time is "+Departure_time);
+				System.out.println("Flight Arrival_time is "+Arrival_time);
 			}
 		}
 		System.out.println("Please find below flight details from Hyderabad to Pune");
@@ -241,10 +245,15 @@ public class KOCH_Page extends TestBase{
 			String amount=driver.findElement(By.xpath("(//div[@class='result-col']//div[@class='price']//span/following-sibling::span)["+i+"]")).getText();
 			int price=Integer.parseInt(amount);
 			if(price<5000) {
+
 				String flight=driver.findElement(By.xpath("(//div[@class='result-col']//div[@class='price']//span/following-sibling::span)["+i+"]/ancestor::div[@class='summary-section']//div[@class='u-text-ellipsis']")).getText();
 				String[] Details=flight.split("  ");
-				System.out.println("Flight name is "+Details[0]);
+				System.out.println("\nFlight name is "+Details[0]);
 				System.out.println("Flight number is "+Details[1]);
+				String Departure_time=driver.findElement(By.xpath("(//div[@class='result-col']//div[@class='price']//span/following-sibling::span)["+i+"]/ancestor::div[@class='summary-section']//div[@class='time-group']/div[@class='time'][1]")).getText();
+				String Arrival_time=driver.findElement(By.xpath("(//div[@class='result-col']//div[@class='price']//span/following-sibling::span)["+i+"]/ancestor::div[@class='summary-section']//div[@class='time-group']/div[@class='time'][2]")).getText();
+				System.out.println("Flight Departure_time is "+Departure_time);
+				System.out.println("Flight Arrival_time is "+Arrival_time);
 			}
 		}		
 	}
